@@ -153,6 +153,17 @@ angular.module("angular-growl").provider("growl", function() {
 		function addSuccessMessage(text, config) {
 			sendMessage(text, config, "success");
 		}
+        
+		/**
+		 * add  message  Object
+		 *
+		 * @param message {text:'',severity:'success'}
+		 */
+        function addMessage(message,config) {
+            if(message.text&&message.severity) {
+                sendMessage(message.text, config, message.severity);
+            }  
+        }
 
 		/**
 		 * add a indefinite number of messages that a backend server may have sent as a validation result
@@ -190,6 +201,7 @@ angular.module("angular-growl").provider("growl", function() {
 		}
 
 		return {
+            addMessage:addMessage,
 			addWarnMessage: addWarnMessage,
 			addErrorMessage: addErrorMessage,
 			addInfoMessage: addInfoMessage,
